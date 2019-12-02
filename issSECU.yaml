@@ -1,0 +1,108 @@
+swagger:  "2.0"
+
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+  version:      "0.1"
+  title:        ISS Current Location  Integration
+  description:  |
+                ## Use ISS current location API to show location on a map.
+
+                This is a Murano Service integration with
+                ISS current location (https://wheretheiss.at/w/developer) to allow your Murano solution
+                to get location coordinates.
+  contact:
+    name:       Tristan Harling
+    email:      tristan.harling@ensg.eu
+# documentation
+externalDocs:
+  description:  ISS current location documentation and other satellites!
+  url:          https://wheretheiss.at/w/developer
+host:     api.wheretheiss.at
+# basePath prefixes all resource paths
+basePath: /v1/satellites
+# tags: Categories to be referenced in documentation & marketplace
+tags:
+  - name:         Integration
+    description:  Interface to communicate to ISS service, for the ISS current location service
+schemes:
+  # the ISS current location REST API is served over HTTP.
+  - https
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+
+################################################################################
+#                      Service Configuration Parameters                        #
+################################################################################
+#x-exosite-config-parameters:
+#  - name:         auth_token
+#    description:  Dark Sky Authentication Token
+#    type:         string
+#    format:       password
+#    required:     true
+
+################################################################################
+#                                           Paths                              #
+################################################################################
+paths:
+  /{id}:
+
+    get:
+      summary: get satellite informations by id, including location
+      parameters:
+        - in:           path
+          name:         id
+          description:  numeric id of the satellite, ISS should be 25544
+          type:         integer
+          required:     true
+        
+      tags:
+          - calls
+      operationId:  getLocation
+      description:  Using this path, will get a json file containing timestamp, and location (Lat/Long) of the ISS.
+      produces:
+      - application/json
+
+      x-exosite-example:    |
+                      --#ENDPOINT GET /satellites/iss
+  
+                      Iss_data = Iss-now({id=25544})
+
+                      print(to_json(Iss_data))
+
+                      response.message = Iss_data
+      responses:
+        200:
+          description:  success
+          schema:
+              type:         object
+              description:  location and timestamp results
+              properties:              
+                name:
+                  description: the satellite name
+                  type:     string
+
+        default:
+          description: error
+          schema:
+            $ref:       "#/definitions/ErrorResponse"
+################################################################################
+#                                 Definitions                                  #
+################################################################################
+
+definitions:
+  ErrorResponse:
+    description: Request error
+    type: object
+    properties:
+      error:
+        type: string
+        description: Error message
+      status:
+        type: integer
+        description: Response code
+      type:
+        type: string
+        description: Error type
