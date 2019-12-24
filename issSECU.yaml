@@ -69,7 +69,7 @@ paths:
           description:  num
           type:         string
           required:     true
-          default: "https://api.wheretheiss.at"
+          default: https://api.wheretheiss.at
         
       tags:
           - calls
