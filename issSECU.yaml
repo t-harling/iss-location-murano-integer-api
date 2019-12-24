@@ -118,7 +118,7 @@ paths:
       operationId:  getToken
       description:  Using this path, will get an access token from auth0.
       consumes:
-        - application/json
+        - application/x-www-urlencoded
       produces:
         - application/json
 
