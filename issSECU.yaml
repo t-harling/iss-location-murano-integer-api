@@ -61,7 +61,7 @@ x-exosite-config-parameters:
 securityDefinitions:
   Bearer:
     type: apiKey
-    scheme: Authorization
+    name: Authorization
     in: header
 
 
@@ -74,44 +74,40 @@ paths:
       summary: get token for after user login,  then can access to user information.
       parameters:
         - in:           body
-          name:         grant_type
-          description:  what type of grant is needed
-          type:         string
-          required:     true
+          name:         body
+          description:  the body with all the fields
+          schema:
+            type:       object
+            required:
+              - grant_type, Clientid, Clientsecret, code, code_verifier, redirect_uri
+            properties:
+              grant_type:
+                type:   string
+                description: what type of grant is needed
+              Clientid:
+                type:   string
+                description: credential used for every auth0 api call
+                x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+              Clientsecret:
+                type:   string
+                description: credential used for every auth0 api call
+                x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+              code:
+                type:   string
+                description: code given after login callback
+              code_verifier:
+                type:   string
+                description: specific code verifier given after callback
+              redirect_uri:
+                type:   string
+                description: redirect url
         - in:           host
           name:         Hostdomain
           description:  specific host domain
           type:         string
           required:     true
           x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
-        - in:           body
-          name:         Clientid
-          description:  credential used for every auth0 api call
-          type:         string
-          required:     true
-          x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
-        - in:           body
-          name:         Clientsecret
-          description:  credential used for every auth0 api call
-          type:         string
-          required:     true
-          x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
-        - in:           body
-          name:         code
-          description:  code given after login callback
-          type:         string
-          required:     true
-        - in:           body
-          name:         code_verifier
-          description:  specific code verifier given after callback
-          type:         string
-          required:     true
-        - in:           body
-          name:         redirect_uri
-          description:  redirect url
-          type:         string
-          required:     true
-       
+
       tags:
           - calls
       operationId:  getToken
@@ -146,11 +142,6 @@ paths:
     get:
       summary: get user info using token.
       parameters:
-        - in:           body
-          name:         grant_type
-          description:  what type of grant is needed
-          type:         string
-          required:     true
         - in:           host
           name:         Hostdomain
           description:  specific host domain
@@ -176,19 +167,11 @@ paths:
                       response.message = Iss_data
       responses:
         200:
-          description:  success
-          schema:
-              type:         object
-              description: token result
-              properties:              
-                name:
-                  description: access_token
-                  type:     string
+          $ref: "#/definitions/Success"
+      
         401:
-          description: unauthorized
           $ref: "#/definitions/UnauthorizedError"
         403:
-          description: unauthorized
           $ref: "#/definitions/UnauthorizedError"
           
         default:
@@ -200,8 +183,20 @@ paths:
 ################################################################################
 
 definitions:
+  Success:
+    type: object
+    description: token result
+    properties:              
+      name:
+        description: access_token
+        type:     string
   UnauthorizedError:
-    description Access token is missing or invalid
+    description: Access token is missing or invalid
+    type: object
+    properties:
+      error:
+        type: string
+        description: not authorized
   ErrorResponse:
     description: Request error
     type: object
