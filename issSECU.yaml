@@ -104,8 +104,9 @@ paths:
         - in:           host
           name:         Hostdomain
           description:  specific host domain
-          type:         string
-          required:     true
+          schema: 
+            type:         string
+            required:     true
           x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
 
       tags:
