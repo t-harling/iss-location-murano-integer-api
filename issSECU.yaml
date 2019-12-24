@@ -19,20 +19,6 @@ info:
 externalDocs:
   description:  ISS current location documentation and other satellites!
   url:          https://wheretheiss.at/w/developer
-# host:     api.wheretheiss.at
-host: Hostdomain
-# basePath prefixes all resource paths
-basePath: /v1/satellites
-# tags: Categories to be referenced in documentation & marketplace
-tags:
-  - name:         Integration
-    description:  Interface to communicate to ISS service, for the ISS current location service
-schemes:
-  # the ISS current location REST API is served over HTTP.
-  - https
-# format of the responses to the client (Accepts)
-produces:
-  - application/json
 
 ################################################################################
 #                      Service Configuration Parameters                        #
@@ -50,6 +36,23 @@ x-exosite-config-parameters:
     description:  the client secret from Auth0
     type:         string
     required:     true
+
+# host:     api.wheretheiss.at
+host: Hostdomain
+# basePath prefixes all resource paths
+basePath: /v1/satellites
+# tags: Categories to be referenced in documentation & marketplace
+tags:
+  - name:         Integration
+    description:  Interface to communicate to ISS service, for the ISS current location service
+schemes:
+  # the ISS current location REST API is served over HTTP.
+  - https
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+
+
 ################################################################################
 #                                           Paths                              #
 ################################################################################
