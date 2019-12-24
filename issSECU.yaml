@@ -174,10 +174,10 @@ definitions:
         type:   string
       clientid:
         type:   string
-        x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+        # x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
       clientsecret:
         type:   string
-        x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+        # x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
       code:
         type:   string
       code_verifier:
