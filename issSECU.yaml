@@ -40,15 +40,15 @@ produces:
 #                      Service Configuration Parameters                        #
 ################################################################################
 x-exosite-config-parameters:
-  - name:         Hostdomain
+  - name:         hostdomain
     description:  Auth0 domain url
     type:         string
     required:     true
-  - name:         Clientid
+  - name:         clientid
     description:  the client id from Auth0
     type:         string
     required:     true
-  - name:         Clientsecret
+  - name:         clientsecret
     description:  the client secret from Auth0
     type:         string
     required:     true
@@ -71,7 +71,7 @@ securityDefinitions:
 paths:
   /oauth/token:
     parameters:
-    - name:         Hostdomain
+    - name:         hostdomain
       in:           host
       description:  specific host domain
       type:         string
@@ -118,7 +118,7 @@ paths:
             $ref:       "#/definitions/ErrorResponse"
   /userinfo:
     parameters:
-    - name:         Hostdomain
+    - name:         hostdomain
       in:           host
       description:  specific host domain
       type:         string
@@ -172,10 +172,10 @@ definitions:
     properties:
       grant_type:
         type:   string
-      Clientid:
+      clientid:
         type:   string
         x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
-      Clientsecret:
+      clientsecret:
         type:   string
         x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
       code:
