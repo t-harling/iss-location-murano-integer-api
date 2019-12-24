@@ -170,8 +170,7 @@ paths:
 
 definitions:
   Infos:
-    type: object
-
+    description:
     properties:
       grant_type:
         type:   string
@@ -193,6 +192,13 @@ definitions:
       redirect_uri:
         type:   string
         description: redirect url
+    required:
+      - grant_type
+      - clientidd
+      - clientsecrett
+      - code
+      - code_verifier
+      - redirect_uri
   Success:
     type: object
     description: token result
