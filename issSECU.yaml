@@ -20,27 +20,10 @@ externalDocs:
   description:  ISS current location documentation and other satellites!
   url:          https://wheretheiss.at/w/developer
 
-################################################################################
-#                      Service Configuration Parameters                        #
-################################################################################
-x-exosite-config-parameters:
-  - name:         Hostdomain
-    description:  Auth0 domain url
-    type:         string
-    required:     true
-  - name:         Clientid
-    description:  the client id from Auth0
-    type:         string
-    required:     true
-  - name:         Clientsecrect
-    description:  the client secret from Auth0
-    type:         string
-    required:     true
-
 # host:     api.wheretheiss.at
-host: {Hostdomain}
+host: example.com
 # basePath prefixes all resource paths
-basePath: /v1/satellites
+basePath: /
 # tags: Categories to be referenced in documentation & marketplace
 tags:
   - name:         Integration
@@ -54,24 +37,85 @@ produces:
 
 
 ################################################################################
+#                      Service Configuration Parameters                        #
+################################################################################
+x-exosite-config-parameters:
+  - name:         Hostdomain
+    description:  Auth0 domain url
+    type:         string
+    required:     true
+  - name:         Clientid
+    description:  the client id from Auth0
+    type:         string
+    required:     true
+  - name:         Clientsecret
+    description:  the client secret from Auth0
+    type:         string
+    required:     true
+
+
+###############
+#    components
+###############
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    scheme: Authorization
+    in: header
+
+
+################################################################################
 #                                           Paths                              #
 ################################################################################
 paths:
-  /{id}:
-
-    get:
-      summary: get satellite informations by id, including location
+  /oauth/token:
+    post:
+      summary: get token for after user login,  then can access to user information.
       parameters:
-        - in:           path
-          name:         id
-          description:  numeric id of the satellite, ISS should be 25544
-          type:         integer
+        - in:           body
+          name:         grant_type
+          description:  what type of grant is needed
+          type:         string
           required:     true
-        
+        - in:           host
+          name:         Hostdomain
+          description:  specific host domain
+          type:         string
+          required:     true
+          x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+        - in:           body
+          name:         Clientid
+          description:  credential used for every auth0 api call
+          type:         string
+          required:     true
+          x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+        - in:           body
+          name:         Clientsecret
+          description:  credential used for every auth0 api call
+          type:         string
+          required:     true
+          x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+        - in:           body
+          name:         code
+          description:  code given after login callback
+          type:         string
+          required:     true
+        - in:           body
+          name:         code_verifier
+          description:  specific code verifier given after callback
+          type:         string
+          required:     true
+        - in:           body
+          name:         redirect_uri
+          description:  redirect url
+          type:         string
+          required:     true
+       
       tags:
           - calls
-      operationId:  getLocation
-      description:  Using this path, will get a json file containing timestamp, and location (Lat/Long) of the ISS.
+      operationId:  getToken
+      description:  Using this path, will get an access token from auth0.
       produces:
       - application/json
 
@@ -88,21 +132,76 @@ paths:
           description:  success
           schema:
               type:         object
-              description:  location and timestamp results
+              description: token result
               properties:              
                 name:
-                  description: the satellite name
+                  description: access_token
                   type:     string
 
         default:
           description: error
           schema:
             $ref:       "#/definitions/ErrorResponse"
+  /userinfo:
+    get:
+      summary: get user info using token.
+      parameters:
+        - in:           body
+          name:         grant_type
+          description:  what type of grant is needed
+          type:         string
+          required:     true
+        - in:           host
+          name:         Hostdomain
+          description:  specific host domain
+          type:         string
+          required:     true
+          x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+      tags:
+        - calls
+      operationId:  getUserInfo
+      description:  Using a bearer token, wil l retrive info user from auth0.
+      security:
+        - Bearer: []
+      produces:
+      - application/json
+
+      x-exosite-example:    |
+                      --#ENDPOINT GET /satellites/iss
+  
+                      Iss_data = Iss-now({id=25544})
+
+                      print(to_json(Iss_data))
+
+                      response.message = Iss_data
+      responses:
+        200:
+          description:  success
+          schema:
+              type:         object
+              description: token result
+              properties:              
+                name:
+                  description: access_token
+                  type:     string
+        401:
+          description: unauthorized
+          $ref: "#/definitions/UnauthorizedError"
+        403:
+          description: unauthorized
+          $ref: "#/definitions/UnauthorizedError"
+          
+        default:
+          description: error
+          schema:
+            $ref:       "#/definitions/ErrorResponse"  
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
 
 definitions:
+  UnauthorizedError:
+    description Access token is missing or invalid
   ErrorResponse:
     description: Request error
     type: object
