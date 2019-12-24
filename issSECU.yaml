@@ -113,13 +113,14 @@ paths:
             type:         string
             required:     true
           x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
-
       tags:
-          - calls
+        - calls
       operationId:  getToken
       description:  Using this path, will get an access token from auth0.
+      consumes:
+        - application/json
       produces:
-      - application/json
+        - application/json
 
       x-exosite-example:    |
                       --#ENDPOINT GET /satellites/iss
