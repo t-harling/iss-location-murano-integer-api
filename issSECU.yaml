@@ -80,12 +80,31 @@ paths:
     post:
       summary: get token for after user login,  then can access to user information.
       parameters:
-        - name:         infos
+        - name:         user
           in:           body
           description:  the body with all the fields
-          required: true
           schema:
-            $ref:  "#/definitions/Infos"
+            type: object
+            required:
+              - grant_type
+              - clientidd
+              - clientsecrett
+              - code
+              - code_verifier
+              - redirect_uri
+            properties:
+              grant_type:
+                type: string
+              clientidd:
+                type: string
+              clientsecrett:
+                type: string
+              code:
+                type: string
+              code_verifier:
+                type: string
+              redirect_uri:
+                type: string
       tags:
         - calls
       operationId:  getToken
@@ -169,36 +188,6 @@ paths:
 ################################################################################
 
 definitions:
-  Infos:
-    description:
-    properties:
-      grant_type:
-        type:   string
-        description: what type of grant is needed
-      clientidd:
-        type:   string
-        description: credential used for every auth0 api call
-        x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
-      clientsecrett:
-        type:   string
-        description: credential used for every auth0 api call
-        x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
-      code:
-        type:   string
-        description: code given after login callback
-      code_verifier:
-        type:   string
-        description: specific code verifier given after callback
-      redirect_uri:
-        type:   string
-        description: redirect url
-    required:
-      - grant_type
-      - clientidd
-      - clientsecrett
-      - code
-      - code_verifier
-      - redirect_uri
   Success:
     type: object
     description: token result
