@@ -167,12 +167,18 @@ paths:
                       response.message = Iss_data
       responses:
         200:
-          $ref: "#/definitions/Success"
+          description: Ok
+          schema:
+            $ref: "#/definitions/Success"
       
         401:
-          $ref: "#/definitions/UnauthorizedError"
+          description: error unauthorized
+          schema:
+            $ref: "#/definitions/UnauthorizedError"
         403:
-          $ref: "#/definitions/UnauthorizedError"
+          description: error unauthorized
+          schema:
+            $ref: "#/definitions/UnauthorizedError"
           
         default:
           description: error
