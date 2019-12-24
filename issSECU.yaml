@@ -92,7 +92,8 @@ paths:
       description:  Using this path, will get an access token from auth0.
       produces:
         - application/json
-
+      consumes:
+        - application/json
       x-exosite-example:    |
                       --#ENDPOINT GET /satellites/iss
   
@@ -134,7 +135,8 @@ paths:
         - Bearer: []
       produces:
       - application/json
-
+      consumes:
+        - application/json
       x-exosite-example:    |
                       --#ENDPOINT GET /satellites/iss
   
@@ -169,22 +171,28 @@ paths:
 definitions:
   Infos:
     type: object
+
     properties:
       grant_type:
         type:   string
+        description: what type of grant is needed
       clientid:
         type:   string
-        # x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+        description: credential used for every auth0 api call
+        x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
       clientsecret:
         type:   string
-        # x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
+        description: credential used for every auth0 api call
+        x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
       code:
         type:   string
+        description: code given after login callback
       code_verifier:
         type:   string
+        description: specific code verifier given after callback
       redirect_uri:
         type:   string
-
+        description: redirect url
   Success:
     type: object
     description: token result
