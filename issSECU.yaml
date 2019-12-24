@@ -42,6 +42,7 @@ x-exosite-config-parameters:
     description:  Auth0 domain url
     type:         string
     required:     true
+    default:      api.wheretheiss.at
   - name:         Clientid
     description:  the client id from Auth0
     type:         string
