@@ -38,7 +38,7 @@ x-exosite-config-parameters:
     required:     true
 
 # host:     api.wheretheiss.at
-host: Hostdomain
+host: {Hostdomain}
 # basePath prefixes all resource paths
 basePath: /v1/satellites
 # tags: Categories to be referenced in documentation & marketplace
