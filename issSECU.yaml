@@ -74,7 +74,7 @@ paths:
       summary: get token for after user login,  then can access to user information.
       parameters:
         - in:           body
-          name:         body
+          name:         infos
           description:  the body with all the fields
           schema:
             type:       object
