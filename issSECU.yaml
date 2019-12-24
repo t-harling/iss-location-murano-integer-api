@@ -20,9 +20,9 @@ externalDocs:
   description:  ISS current location documentation and other satellites!
   url:          https://wheretheiss.at/w/developer
 # host:     api.wheretheiss.at
-host:
+host: api.wheretheiss.at
 # basePath prefixes all resource paths
-
+basePath: /v1/satellites
 # tags: Categories to be referenced in documentation & marketplace
 tags:
   - name:         Integration
@@ -54,7 +54,7 @@ x-exosite-config-parameters:
 #                                           Paths                              #
 ################################################################################
 paths:
-  /{Hostdomain}/v1/satellites/{id}:
+  /{id}:
 
     get:
       summary: get satellite informations by id, including location
@@ -64,12 +64,6 @@ paths:
           description:  numeric id of the satellite, ISS should be 25544
           type:         integer
           required:     true
-        - in:           path
-          name:         Hostdomain
-          description:  num
-          type:         string
-          required:     true
-          default: https://api.wheretheiss.at
         
       tags:
           - calls
