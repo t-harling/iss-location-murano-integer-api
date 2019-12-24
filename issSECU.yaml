@@ -20,9 +20,9 @@ externalDocs:
   description:  ISS current location documentation and other satellites!
   url:          https://wheretheiss.at/w/developer
 # host:     api.wheretheiss.at
-host: 
+
 # basePath prefixes all resource paths
-basePath: 
+
 # tags: Categories to be referenced in documentation & marketplace
 tags:
   - name:         Integration
