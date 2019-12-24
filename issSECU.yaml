@@ -79,7 +79,12 @@ paths:
           schema:
             type:       object
             required:
-              - grant_type, Clientid, Clientsecret, code, code_verifier, redirect_uri
+              - grant_type
+              - Clientid
+              - Clientsecret
+              - code
+              - code_verifier
+              - redirect_uri
             properties:
               grant_type:
                 type:   string
