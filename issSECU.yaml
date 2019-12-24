@@ -70,11 +70,18 @@ securityDefinitions:
 ################################################################################
 paths:
   /oauth/token:
+    parameters:
+    - name:         Hostdomain
+      in:           host
+      description:  specific host domain
+      type:         string
+      required:     true
+      x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
     post:
       summary: get token for after user login,  then can access to user information.
       parameters:
-        - in:           body
-          name:         infos
+        - name:         infos
+          in:           body
           description:  the body with all the fields
           schema:
             type:       object
@@ -106,19 +113,10 @@ paths:
               redirect_uri:
                 type:   string
                 description: redirect url
-        - in:           host
-          name:         Hostdomain
-          description:  specific host domain
-          schema: 
-            type:         string
-            required:     true
-          x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
       tags:
         - calls
       operationId:  getToken
       description:  Using this path, will get an access token from auth0.
-      consumes:
-        - application/x-www-urlencoded
       produces:
         - application/json
 
@@ -146,15 +144,15 @@ paths:
           schema:
             $ref:       "#/definitions/ErrorResponse"
   /userinfo:
+    parameters:
+    - name:         Hostdomain
+      in:           host
+      description:  specific host domain
+      type:         string
+      required:     true
+      x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
     get:
       summary: get user info using token.
-      parameters:
-        - in:           host
-          name:         Hostdomain
-          description:  specific host domain
-          type:         string
-          required:     true
-          x-exosite-restricted: true # Indicate the Scripting call cannot overload this parameter
       tags:
         - calls
       operationId:  getUserInfo
