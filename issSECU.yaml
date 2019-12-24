@@ -19,7 +19,8 @@ info:
 externalDocs:
   description:  ISS current location documentation and other satellites!
   url:          https://wheretheiss.at/w/developer
-host:     api.wheretheiss.at
+# host:     api.wheretheiss.at
+host: Hostdomain
 # basePath prefixes all resource paths
 basePath: /v1/satellites
 # tags: Categories to be referenced in documentation & marketplace
@@ -36,13 +37,19 @@ produces:
 ################################################################################
 #                      Service Configuration Parameters                        #
 ################################################################################
-#x-exosite-config-parameters:
-#  - name:         auth_token
-#    description:  Dark Sky Authentication Token
-#    type:         string
-#    format:       password
-#    required:     true
-
+x-exosite-config-parameters:
+  - name:         Hostdomain
+    description:  Auth0 domain url
+    type:         string
+    required:     true
+  - name:         Clientid
+    description:  the client id from Auth0
+    type:         string
+    required:     true
+  - name:         Clientsecrect
+    description:  the client secret from Auth0
+    type:         string
+    required:     true
 ################################################################################
 #                                           Paths                              #
 ################################################################################
