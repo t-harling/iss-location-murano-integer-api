@@ -118,6 +118,7 @@ paths:
         - calls
       operationId:  getToken
       description:  Using this path, will get an access token from auth0.
+      security:    []
       produces:
         - application/json
       consumes:
