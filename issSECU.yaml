@@ -60,11 +60,9 @@ x-exosite-config-parameters:
 
 securityDefinitions:
   Bearer:
-    type: apiKey
-    name: Authorization
+    type: bearer
+    name: xtoken
     in: header
-    x-exosite-prefix: Bearer
-    x-exosite-from: xtoken
     x-exosite-restricted: true
 
 ################################################################################
