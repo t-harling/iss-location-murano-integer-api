@@ -39,7 +39,7 @@ produces:
 #                      Service Configuration Parameters                        #
 ################################################################################
 x-exosite-config-parameters:
-  - name: x-token
+  - name: xtoken
     description: The bearer token
     type: string
     x-exosite-restricted: true
@@ -64,7 +64,7 @@ securityDefinitions:
     name: Authorization
     in: header
     x-exosite-prefix: Bearer
-    x-exosite-from: x-token
+    x-exosite-from: xtoken
     x-exosite-restricted: true
 
 ################################################################################
