@@ -39,18 +39,18 @@ produces:
 #                      Service Configuration Parameters                        #
 ################################################################################
 x-exosite-config-parameters:
-  - name: xtoken
+  - name: x-token
     description: The bearer token
     type: string
     x-exosite-restricted: true
-  - name:         hostdomain
+  - name:         x-hostdomain
     description:  Auth0 domain url
     type:         string
     required:     true
-  - name:         clientidd
+  - name:         x-clientidd
     description:  the client id from Auth0
     type:         string
-  - name:         clientsecrett
+  - name:         x-clientsecrett
     description:  the client secret from Auth0
     type:         string
 
@@ -95,7 +95,7 @@ paths:
       produces:
         - application/json
       consumes:
-        - application/x-www-form-urlencoded
+        - application/json
       x-exosite-example:    |
                       --#ENDPOINT GET /satellites/iss
   
@@ -205,10 +205,10 @@ definitions:
       grant_type:
         description: grant type config
         type: string
-      clientidd:
+      x-clientidd:
         type: string
         x-exosite-restricted: true
-      clientsecrett:
+      x-clientsecrett:
         type: string
         x-exosite-restricted: true
       code:
