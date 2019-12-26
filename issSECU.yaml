@@ -206,11 +206,9 @@ definitions:
         description: grant type config
         type: string
       clientidd:
-        description: from exosite
         type: string
         x-exosite-restricted: true
       clientsecrett:
-        description: from exosite2
         type: string
         x-exosite-restricted: true
       code:
