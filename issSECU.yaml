@@ -83,28 +83,28 @@ paths:
         - name:         user
           in:           body
           description:  the body with all the fields
-          schema:
-            type: object
-            required:
-              - grant_type
-              - clientidd
-              - clientsecrett
-              - code
-              - code_verifier
-              - redirect_uri
-            properties:
-              grant_type:
-                type: string
-              clientidd:
-                type: string
-              clientsecrett:
-                type: string
-              code:
-                type: string
-              code_verifier:
-                type: string
-              redirect_uri:
-                type: string
+          # schema:
+          #   type: object
+          #   required:
+          #     - grant_type
+          #     - clientidd
+          #     - clientsecrett
+          #     - code
+          #     - code_verifier
+          #     - redirect_uri
+          #   properties:
+          #     grant_type:
+          #       type: string
+          #     clientidd:
+          #       type: string
+          #     clientsecrett:
+          #       type: string
+          #     code:
+          #       type: string
+          #     code_verifier:
+          #       type: string
+          #     redirect_uri:
+          #       type: string
       tags:
         - calls
       operationId:  getToken
