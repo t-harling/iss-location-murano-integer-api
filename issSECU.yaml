@@ -53,7 +53,6 @@ x-exosite-config-parameters:
   - name:         clientsecrett
     description:  the client secret from Auth0
     type:         string
-    format:       password
 
 ###############
 #    components
@@ -211,7 +210,7 @@ definitions:
         type: string
         x-exosite-restricted: true
       clientsecrett:
-        description: from exosite 2
+        description: from exosite2
         type: string
         x-exosite-restricted: true
       code:
