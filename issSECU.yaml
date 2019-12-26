@@ -95,7 +95,7 @@ paths:
       produces:
         - application/json
       consumes:
-        - application/json
+        - application/x-www-form-urlencoded
       x-exosite-example:    |
                       --#ENDPOINT GET /satellites/iss
   
