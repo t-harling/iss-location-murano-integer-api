@@ -39,7 +39,7 @@ produces:
 #    components
 ###############
 
-secrurity_schemes:
+securityDefinitions:
   Bearer:
     type: bearer
     name: xtoken
