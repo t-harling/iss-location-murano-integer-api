@@ -40,6 +40,10 @@ produces:
 #                      Service Configuration Parameters                        #
 ################################################################################
 x-exosite-config-parameters:
+  - name: x-token
+    description: The bearer token
+    type: string
+    x-exosite-restricted: true
   - name:         hostdomain
     description:  Auth0 domain url
     type:         string
@@ -63,6 +67,9 @@ securityDefinitions:
     type: apiKey
     name: Authorization
     in: header
+    x-exosite-prefix: Bearer
+    x-exosite-from: x-token
+    x-exosite-restricted: true
 
 
 ################################################################################
@@ -83,28 +90,28 @@ paths:
         - name:         user
           in:           body
           description:  the body with all the fields
-          # schema:
-          #   type: object
-          #   required:
-          #     - grant_type
-          #     - clientidd
-          #     - clientsecrett
-          #     - code
-          #     - code_verifier
-          #     - redirect_uri
-          #   properties:
-          #     grant_type:
-          #       type: string
-          #     clientidd:
-          #       type: string
-          #     clientsecrett:
-          #       type: string
-          #     code:
-          #       type: string
-          #     code_verifier:
-          #       type: string
-          #     redirect_uri:
-          #       type: string
+          schema:
+            type: object
+            required:
+              - grant_type
+              - clientidd
+              - clientsecrett
+              - code
+              - code_verifier
+              - redirect_uri
+            properties:
+              grant_type:
+                type: string
+              clientidd:
+                type: string
+              clientsecrett:
+                type: string
+              code:
+                type: string
+              code_verifier:
+                type: string
+              redirect_uri:
+                type: string
       tags:
         - calls
       operationId:  getToken
