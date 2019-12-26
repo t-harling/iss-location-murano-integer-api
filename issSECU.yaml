@@ -40,7 +40,7 @@ produces:
 #                      Service Configuration Parameters                        #
 ################################################################################
 x-exosite-config-parameters:
-  - name: x-token
+  - name: xtoken
     description: The bearer token
     type: string
     x-exosite-restricted: true
@@ -55,6 +55,7 @@ x-exosite-config-parameters:
   - name:         clientsecrett
     description:  the client secret from Auth0
     type:         string
+    format:       password
     required:     true
 
 
@@ -68,7 +69,7 @@ securityDefinitions:
     name: Authorization
     in: header
     x-exosite-prefix: Bearer
-    x-exosite-from: x-token
+    x-exosite-from: xtoken
     x-exosite-restricted: true
 
 
