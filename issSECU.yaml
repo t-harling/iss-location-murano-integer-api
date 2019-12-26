@@ -87,31 +87,12 @@ paths:
     post:
       summary: get token for after user login,  then can access to user information.
       parameters:
-        - name:         user
+        - name:         body
           in:           body
           description:  the body with all the fields
+          required: true
           schema:
-            type: object
-            required:
-              - grant_type
-              - clientidd
-              - clientsecrett
-              - code
-              - code_verifier
-              - redirect_uri
-            properties:
-              grant_type:
-                type: string
-              clientidd:
-                type: string
-              clientsecrett:
-                type: string
-              code:
-                type: string
-              code_verifier:
-                type: string
-              redirect_uri:
-                type: string
+            $ref: "#/definitions/Bodyfortoken"
       tags:
         - calls
       operationId:  getToken
@@ -222,3 +203,27 @@ definitions:
       type:
         type: string
         description: Error type
+  Bodyfortoken:
+    description: Body structure neede for as token
+    type: object
+    properties:
+      grant_type:
+        description: grant type config
+        type: string
+      clientidd:
+        description: from exosite
+        type: string
+        x-exosite-restricted: true
+      clientsecrett:
+        description: from exosite
+        type: string
+        x-exosite-restricted: true
+      code:
+        description: code  config
+        type: string
+      code_verifier:
+        description: code verifier  config
+        type: string
+      redirect_uri:
+        description: redirect uri  config
+        type: string
