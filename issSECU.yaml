@@ -192,8 +192,8 @@ definitions:
     type:     object
     description: a token acess and metadata
     properties:              
-      xtoken:
-        description: access_token
+      access_token:
+        description: access of token
         type:     string
       token_type:
         description: type of token
