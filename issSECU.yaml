@@ -1,25 +1,20 @@
 swagger:  "2.0"
-
 ################################################################################
 #                              API Information                                 #
 ################################################################################
 info:
   version:      "0.1"
-  title:        ISS Current Location  Integration
+  title:        Auth0  Integration
   description:  |
-                ## Use ISS current location API to show location on a map.
-
+                ## Use  API to Auth0.
                 This is a Murano Service integration with
-                ISS current location (https://wheretheiss.at/w/developer) to allow your Murano solution
-                to get location coordinates.
   contact:
     name:       Tristan Harling
     email:      tristan.harling@ensg.eu
 # documentation
 externalDocs:
-  description:  ISS current location documentation and other satellites!
-  url:          https://wheretheiss.at/w/developer
-
+  description:  
+  url:          https://docs.exosite.com
 # host:     api.wheretheiss.at
 host: example.com
 # basePath prefixes all resource paths
