@@ -13,7 +13,7 @@ info:
     email:      tristan.harling@ensg.eu
 # documentation
 externalDocs:
-  description:  
+  description:  doc from exosite
   url:          https://docs.exosite.com
 # host:     api.wheretheiss.at
 host: example.com
