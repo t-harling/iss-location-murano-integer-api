@@ -56,11 +56,9 @@ x-exosite-config-parameters:
   - name:         client_id
     description:  the client id from Auth0
     $ref:         "#/definitions/ClientId"
-    x-exosite-restricted: true
   - name:         client_secret
     description:  the client secret from Auth0
     $ref:         "#/definitions/ClientSecret"
-    x-exosite-restricted: true
 
 ################################################################################
 #                                           Paths                              #
