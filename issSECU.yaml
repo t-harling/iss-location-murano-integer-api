@@ -55,11 +55,12 @@ x-exosite-config-parameters:
     required:     true
   - name:         client_id
     description:  the client id from Auth0
-    type:         string
+    $ref:         "#/definitions/ClientId"
+    x-exosite-restricted: true
   - name:         client_secret
     description:  the client secret from Auth0
-    format:       password
-    type:         string
+    $ref:         "#/definitions/ClientSecret"
+    x-exosite-restricted: true
 
 ################################################################################
 #                                           Paths                              #
@@ -237,11 +238,9 @@ definitions:
         description: grant type config
         type: string
       client_id:
-        type: string
-        x-exosite-restricted: true
+        $ref: "#/definitions/ClientId"
       client_secret:
-        type: string
-        x-exosite-restricted: true
+        $ref: "#/definitions/ClientSecret"
       code:
         description: code  config
         type: string
@@ -251,3 +250,11 @@ definitions:
       redirect_uri:
         description: redirect uri  config
         type: string
+  ClientId:
+    description: config from auth0 parameter
+    type: string
+  ClientSecret:
+    description: config cient secret  from auth0 parameter
+    type: string
+    format: password
+
