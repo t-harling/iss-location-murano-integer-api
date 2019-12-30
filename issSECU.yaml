@@ -38,7 +38,6 @@ securityDefinitions:
   Bearer:
     type: bearer
     name: xtoken
-    in: header
     #important
     description: bearer that is delivered by auth0 after ask token. Can be user after to get userinfo
     x-exosite-restricted: true
