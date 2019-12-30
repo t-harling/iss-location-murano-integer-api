@@ -59,6 +59,7 @@ x-exosite-config-parameters:
     type:         string
   - name:         client_secret
     description:  the client secret from Auth0
+    format:       password
     type:         string
 
 ################################################################################
