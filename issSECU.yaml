@@ -237,8 +237,10 @@ definitions:
         type: string
       client_id:
         $ref: "#/definitions/ClientId"
+        x-exosite-restricted: true
       client_secret:
         $ref: "#/definitions/ClientSecret"
+        x-exosite-restricted: true
       code:
         description: code  config
         type: string
