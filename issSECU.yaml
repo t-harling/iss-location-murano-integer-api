@@ -40,7 +40,6 @@ securityDefinitions:
     name: xtoken
     #important
     description: bearer that is delivered by auth0 after ask token. Can be user after to get userinfo
-    x-exosite-restricted: true
 
 ################################################################################
 #                      Service Configuration Parameters                        #
@@ -49,7 +48,7 @@ x-exosite-config-parameters:
   - name: xtoken
     description: The bearer token
     type: string
-    x-exosite-restricted: true
+    x-exosite-hidden: true
   - name:         hostdomain
     description:  Auth0 domain url
     type:         string
