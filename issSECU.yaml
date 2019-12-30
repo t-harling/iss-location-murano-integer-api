@@ -77,38 +77,44 @@ paths:
     post:
       summary: get token for after user login,  then can access to user information.
       parameters:
-        - name:         client_id
-          description:  domain credential
-          in:           query
-          type:         string
-          x-exosite-restricted: true
+        - name:         body
+          in:           body
+          description:  the body with all the fields
           required: true
-        - name:         client_secret
-          description:  domain credential for secret code
-          in:           query
-          type:         string
-          x-exosite-restricted: true
-          required:    true
-        - name:         code
-          description:  code  config
-          in:           query
-          type:         string
-          required:     true
-        - name:         code_verifier
-          description:  code verifier  config
-          in:           query
-          type:         string
-          required:     true
-        - name:         redirect_uri
-          description:  redirect uri  config
-          in:           query
-          type:         string
-          required:     true
-        - name:         grant_type
-          type:         string
-          in:           query
-          description:  the grant_type that will be used to perform future user request
-          required:     true
+          schema:
+            $ref: "#/definitions/Bodyfortoken"
+        # - name:         client_id
+        #   description:  domain credential
+        #   in:           query
+        #   type:         string
+        #   x-exosite-restricted: true
+        #   required: true
+        # - name:         client_secret
+        #   description:  domain credential for secret code
+        #   in:           query
+        #   type:         string
+        #   x-exosite-restricted: true
+        #   required:    true
+        # - name:         code
+        #   description:  code  config
+        #   in:           query
+        #   type:         string
+        #   required:     true
+        # - name:         code_verifier
+        #   description:  code verifier  config
+        #   in:           query
+        #   type:         string
+        #   required:     true
+        # - name:         redirect_uri
+        #   description:  redirect uri  config
+        #   in:           query
+        #   type:         string
+        #   required:     true
+        # - name:         grant_type
+        #   type:         string
+        #   in:           query
+        #   description:  the grant_type that will be used to perform future user request
+        #   required:     true
       tags:
         - calls
       operationId:  getToken
@@ -224,25 +230,25 @@ definitions:
       type:
         type: string
         description: Error type
-  # Bodyfortoken:
-  #   description: Body structure needed for as token
-  #   type: object
-  #   properties:
-  #     grant_type:
-  #       description: grant type config
-  #       type: string
-  #     client_id:
-  #       type: string
-  #       x-exosite-restricted: true
-  #     client_secret:
-  #       type: string
-  #       x-exosite-restricted: true
-  #     code:
-  #       description: code  config
-  #       type: string
-  #     code_verifier:
-  #       description: code verifier  config
-  #       type: string
-  #     redirect_uri:
-  #       description: redirect uri  config
-  #       type: string
+  Bodyfortoken:
+    description: Body structure needed for as token
+    type: object
+    properties:
+      grant_type:
+        description: grant type config
+        type: string
+      client_id:
+        type: string
+        x-exosite-restricted: true
+      client_secret:
+        type: string
+        x-exosite-restricted: true
+      code:
+        description: code  config
+        type: string
+      code_verifier:
+        description: code verifier  config
+        type: string
+      redirect_uri:
+        description: redirect uri  config
+        type: string
